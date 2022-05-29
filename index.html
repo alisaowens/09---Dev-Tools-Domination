@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+</head>
+<body>
+
+  <p onClick="makeGreen()">This is a paragraph!</p>
+
+  <script>
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'Hugo', age: 8 }];
+
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#129324';
+      p.style.fontSize = '50px';
+    }
+
+    // Regular
+    console.log('This is a regular console message.'); 
+
+    // Interpolated
+    console.log('This is an %s of interpolation.', 'example');
+
+    // Styled
+    console.log('%cThis is an example of a styled message.', 'font-size:20px');
+
+    // warning!
+    console.warn('This is a warning.');
+
+    // Error :|
+    console.error('This is an error.');
+
+    // Info
+    console.info('This is an example of info.'); 
+
+    // Testing
+    const p = document.querySelector('p');
+    console.assert(p.classList.contains('test'), 'Class list does not contain the specified class.'); // only shows up in the console if the assertion fails
+
+    // clearing
+    // console.clear(); 
+
+    // Viewing DOM Elements
+    console.log(p); 
+    console.dir(p); 
+
+    // Grouping together
+    dogs.forEach( dog => {
+      console.groupCollapsed(`${dog.name}`);
+      console.log(`This is ${dog.name}.`);
+      console.log(`${dog.name} is ${dog.age * 7} dog years old.`);
+      console.groupEnd(`${dog.name}`);
+    });
+
+    // counting
+    console.count('Counting how many times this message has been logged'); 
+    console.count('Counting how many times this message has been logged'); 
+    console.count('Counting how many times this message has been logged'); 
+
+    // timing
+    console.time('fetching data'); 
+    fetch('https://api.github.com/users/alisaowens')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('fetching data');
+      });
+
+    // table
+
+    console.table(dogs);
+
+  </script>
+</body>
+</html>
